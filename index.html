@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- create links to bootstrap, css stylesheets -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -14,13 +16,69 @@
     <title>Crystal Game</title>
 
 </head>
+
 <body>
     <div class="container">
-
+        <div class="jumbotron">
+            <h1 class="display-4">Crystal Game</h1>
+            <p class="lead">Click a Crystal to Begin</p>
+        </div>
+        <div class="card">
+            <div class="card-header">Instructions</div>
+            <div class="card-body">
+                <p>When the game begins, a Target Score will be randomly selected and displayed.</p>
+                <p>There are four crystal below. The value of each crystal is randomly selected but only by clicking the
+                    crystal will the value be revealed.</p>
+                <p>Each time you click on a crystal the value will be added to the previously clicked crystal.</p>
+                <p>The player wins the game by clincking the crytals in a way that the sum equals the Target Score. If
+                    the players score goes above the Target Score.</p>
+                <p>After each game the Target Score and the value of each crystal will change.</p>
+            </div>
+        </div>
+        <div class="card">
+                <div class="card-header">Crystals</div>
+                <div class="card-body">
+                    <button class="btn btn-default" id="btn-yellow">
+                        <img src="https://cdn1.iconfinder.com/data/icons/crystal-1/60/yellow_crystal-512.png" width="100" />
+                    </button>
+                    <button class="btn btn-default" id="btn-blue">
+                        <img src="https://cdn1.iconfinder.com/data/icons/crystal-1/60/blue_crystal-512.png" width="100" />
+                    </button>
+                    <button class="btn btn-default" id="btn-green">
+                        <img src="https://cdn1.iconfinder.com/data/icons/crystal-1/60/green_crystal_copy-512.png"
+                            width="100"/>
+                    </button>
+                    <button class="btn btn-default" id="btn-magenta">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn2m528Ek7hzOAhQVNGbzQPQHAWdX160irwI3Q9hctg7XmaZ1d"
+                            width="100"/>
+                    </button>
+                    <h3>Wins: <span id="numWins">0</span></h3><h3>Losses: <span id="numLosses">0</span></h3>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Target Score:</div>
+                    <div class="card-body">
+                        <h2 id="tarScore">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Your Score:</div>
+                    <div class="card-body">
+                        <h2 id="playerScore">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Add links to jQuery and my javascript files -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script type="text/javascript" src="/assets/javascript/game.js"></script>
 </body>
+
 </html>
