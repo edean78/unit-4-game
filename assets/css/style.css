@@ -3,27 +3,11 @@
     text-align: center;
 }
 
-body {
-    
+.crystal-image {
+    height: 100px;
 }
 
 .card {
     margin-top: 20px;
 }
 
-.jumbotron {
-    /* background-image: url(http://bsnscb.com/data/out/48/39999409-crystal-wallpapers.jpg);
-    background-size: cover; */
-}
-
-h2 {
-    
-}
-
-.display-4 {
-    
-}
-
-.card-header {
-    
-}
