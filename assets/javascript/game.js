@@ -1,5 +1,5 @@
 // Ready the document
-$(document).ready(function() {
+$(document).ready(function () {
 
 
     // Create Variables
@@ -8,9 +8,7 @@ $(document).ready(function() {
     var totalScore = 0;
     var wins = 0;
     var losses = 0;
-    var minNumber = 19;
-    var maxNumber = 120;
-    var targetScore = targetScoreRandom(minNumber, maxNumber);
+    var targetScore = 0;
 
     // Create Function and Logic
     // ============================================================================================
@@ -23,10 +21,10 @@ $(document).ready(function() {
     }
 
     // Create an instance of each crystal
-    var crystalYellow = new Crystal("yellow", "https://cdn1.iconfinder.com/data/icons/crystal-1/60/yellow_crystal-512.png", 0);
-    var crystalBlue = new Crystal("blue", "https://cdn1.iconfinder.com/data/icons/crystal-1/60/blue_crystal-512.png", 0);
-    var crystalGreen = new Crystal("green", "https://cdn1.iconfinder.com/data/icons/crystal-1/60/green_crystal_copy-512.png", 0);
-    var crystalPurple = new Crystal("purple", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn2m528Ek7hzOAhQVNGbzQPQHAWdX160irwI3Q9hctg7XmaZ1d", 0);
+    var crystalYellow = new Crystal("yellow", "https://cdn1.iconfinder.com/data/icons/crystal-1/60/yellow_crystal-512.png", "0");
+    var crystalBlue = new Crystal("blue", "https://cdn1.iconfinder.com/data/icons/crystal-1/60/blue_crystal-512.png", "0");
+    var crystalGreen = new Crystal("green", "https://cdn1.iconfinder.com/data/icons/crystal-1/60/green_crystal_copy-512.png", "0");
+    var crystalPurple = new Crystal("purple", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn2m528Ek7hzOAhQVNGbzQPQHAWdX160irwI3Q9hctg7XmaZ1d", "0");
 
     // Create an array of the objects
     var crystalArray = [
@@ -36,20 +34,43 @@ $(document).ready(function() {
         crystalPurple
     ]
 
-    $.each(crystalArray, function(i){
-        var imageCrystal = $("<img>");
+    targetScoreRandom();
+    ranCrystalVal();
+
+    // startGame();
+
+
+    // Create a loop to interate thru the object array to append picURLs to correct div
+    $.each(crystalArray, function (i) {
+
+        // Create a new img element
+        let imageCrystal = $("<img>");
+
+        // Add a class to style the images
         imageCrystal.addClass("crystal-image");
+
+        // Added the src and url to the image element
         imageCrystal.attr("src", crystalArray[i].picURL);
+
+        // Append the crystals div with the new image elements
         $("#crystals").append(imageCrystal);
     })
+
     // Create a function to calculate the Target Score
-    function targetScoreRandom(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
+    function targetScoreRandom() {
+        targetScore = Math.floor(Math.random() * (120 - 19 + 1) + 19);
+        $("#tarScore").text(targetScore);
+        console.log(targetScore);
     };
-    console.log(targetScore);
 
-    $("#tarScore").text(targetScore);
-    var objectRandom = Math.floor((Math.random() * 12) + 1);
+    //Create a function to calculate a random number for each crystal
+    function ranCrystalVal(){
+        $.each(crystalArray, function(i){
+            crystalArray[i].ranVal = Math.floor((Math.random() * 12) + 1);
+            console.log(crystalArray[i].ranVal);
+        })
+    }
 
-    $.each()
+    
+    
 });
