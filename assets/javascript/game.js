@@ -9,6 +9,7 @@ $(document).ready(function () {
     var wins = 0;
     var losses = 0;
     var targetScore = 0;
+    var counter = 0;
 
     // Create Function and Logic
     // ============================================================================================
@@ -34,43 +35,99 @@ $(document).ready(function () {
         crystalPurple
     ]
 
-    targetScoreRandom();
-    ranCrystalVal();
+    function initGame() {
 
-    // startGame();
+        // Empty the crystals
+        $("#crystals").empty();
 
-
-    // Create a loop to interate thru the object array to append picURLs to correct div
-    $.each(crystalArray, function (i) {
-
-        // Create a new img element
-        let imageCrystal = $("<img>");
-
-        // Add a class to style the images
-        imageCrystal.addClass("crystal-image");
-
-        // Added the src and url to the image element
-        imageCrystal.attr("src", crystalArray[i].picURL);
-
-        // Append the crystals div with the new image elements
-        $("#crystals").append(imageCrystal);
-    })
-
-    // Create a function to calculate the Target Score
-    function targetScoreRandom() {
+        // Set targetScore variable to a random number between 19 - 120
         targetScore = Math.floor(Math.random() * (120 - 19 + 1) + 19);
-        $("#tarScore").text(targetScore);
-        console.log(targetScore);
-    };
 
-    //Create a function to calculate a random number for each crystal
-    function ranCrystalVal(){
-        $.each(crystalArray, function(i){
-            crystalArray[i].ranVal = Math.floor((Math.random() * 12) + 1);
-            console.log(crystalArray[i].ranVal);
+        // Display the random number in the tarScore div text
+        $("#tarScore").html(targetScore);
+
+        // Console log the random number
+        console.log(targetScore);
+
+        // Create a loop to interate thru the object array to append picURLs to correct div
+        $.each(crystalArray, function (i) {
+
+            // Create random value for each crystal
+            var random = Math.floor((Math.random() * 12) + 1);
+
+            // Create a new img element
+            var imgCrystal = $("<img>");
+
+            // Add a class to style the images
+            imgCrystal.addClass("crystal-image");
+
+            // Added the src and url to the image element
+            imgCrystal.attr("src", crystalArray[i].picURL);
+
+            // Add data-value attribute to hold the value of each crystal
+            imgCrystal.attr("data-value", random);
+
+            // Append the crystals div with the new image elements
+            $("#crystals").append(imgCrystal);
+
+            // Set your score to zero 0
+            $("#playerScore").html(totalScore);
         })
     }
 
-    
-    
+    initGame();
+
+    // Create click function on each crystal
+    $(".crystal-image").on("click", function () {
+
+        // Set a variable to each crytals data-value
+        var crystalVal = ($(this).attr("data-value"));
+
+        // Convert text to number
+        crystalVal = parseInt(crystalVal);
+
+        // Use counter to calculate score 
+        counter += crystalVal;
+
+        // Display player score in the playerScore div
+        $("#playerScore").html(counter);
+
+        // Create logic to inform players they won or lose
+        // Create if statement if player wins
+        if (counter === targetScore) {
+
+            // alert the player they won
+            alert("You Win!!");
+
+            // increase wins by 1
+            wins++;
+
+            // display wins 
+            $("#numWins").html(wins);
+
+            // Reset game 
+            initGame();
+
+            // Reset counter
+            counter = 0;
+
+        // Create another if statement if player losses    
+        } else if (counter >= targetScore) {
+
+            //Alert player that they lost the game
+            alert("You lost, Try again!!");
+
+            //increment losses by 1
+            losses++;
+
+            //display losses
+            $("#numLosses").html(losses);
+
+            // restart game
+            initGame();
+
+            // reset counter
+            counter = 0;
+        }
+    })
 });
