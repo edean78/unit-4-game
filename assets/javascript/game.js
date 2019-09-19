@@ -35,6 +35,8 @@ $(document).ready(function () {
         crystalPurple
     ]
 
+    initGame();
+
     function initGame() {
 
         // Empty the crystals
@@ -62,6 +64,7 @@ $(document).ready(function () {
 
             // Create random value for each crystal
             var random = Math.floor((Math.random() * 12) + 1);
+            console.log(random);
 
             // Create a new img element
             var imgCrystal = $("<img>");
@@ -81,61 +84,59 @@ $(document).ready(function () {
             // Set your score to zero 0
             $("#playerScore").html(totalScore);
         })
+
+        // Create click function on each crystal
+        $(".crystal-image").on("click", function () {
+
+            // Set a variable to each crytals data-value
+            var crystalVal = ($(this).attr("data-value"));
+
+            // Convert text to number
+            crystalVal = parseInt(crystalVal);
+
+            // Use counter to calculate score 
+            counter += crystalVal;
+
+            // Display player score in the playerScore div
+            $("#playerScore").html(counter);
+
+            // Create logic to inform players they won or lose
+            // Create if statement if player wins
+            if (counter === targetScore) {
+
+                // alert the player they won
+                alert("You Win!!");
+
+                // increase wins by 1
+                wins++;
+
+                // display wins 
+                $("#numWins").html(wins);
+
+                // Reset game 
+                initGame();
+
+                // Reset counter
+                counter = 0;
+
+                // Create another if statement if player losses    
+            } else if (counter >= targetScore) {
+
+                //Alert player that they lost the game
+                alert("You lost, Try again!!");
+
+                //increment losses by 1
+                losses++;
+
+                //display losses
+                $("#numLosses").html(losses);
+
+                // restart game
+                initGame();
+
+                // reset counter
+                counter = 0;
+            }
+        })
     }
-
-    initGame();
-
-    // Create click function on each crystal
-    $(".crystal-image").on("click", function () {
-
-        // Set a variable to each crytals data-value
-        var crystalVal = ($(this).attr("data-value"));
-
-        // Convert text to number
-        crystalVal = parseInt(crystalVal);
-
-        // Use counter to calculate score 
-        counter += crystalVal;
-
-        // Display player score in the playerScore div
-        $("#playerScore").html(counter);
-
-        // Create logic to inform players they won or lose
-        // Create if statement if player wins
-        if (counter === targetScore) {
-
-            // alert the player they won
-            alert("You Win!!");
-
-            // increase wins by 1
-            wins++;
-
-            // display wins 
-            $("#numWins").html(wins);
-
-            // Reset game 
-            initGame();
-
-            // Reset counter
-            counter = 0;
-
-        // Create another if statement if player losses    
-        } else if (counter >= targetScore) {
-
-            //Alert player that they lost the game
-            alert("You lost, Try again!!");
-
-            //increment losses by 1
-            losses++;
-
-            //display losses
-            $("#numLosses").html(losses);
-
-            // restart game
-            initGame();
-
-            // reset counter
-            counter = 0;
-        }
-    })
 });
